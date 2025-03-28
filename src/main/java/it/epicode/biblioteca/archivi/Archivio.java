@@ -17,11 +17,11 @@ public class Archivio {
     }
 
     public void rimuoviElemento(String isbn) {
-        catalogo.removeIf(e -> e.getIsbn().equals(isbn));
+        catalogo.removeIf(e -> e.getcodiceIsbn().equals(isbn));
     }
 
     public ElementoCatalogo ricercaPerIsbn(String isbn) {
-        return catalogo.stream().filter(e -> e.getIsbn().equals(isbn)).findFirst().orElse(null);
+        return catalogo.stream().filter(e -> e.getcodiceIsbn().equals(isbn)).findFirst().orElse(null);
     }
 
     public List<ElementoCatalogo> ricercaPerAnno(int anno) {

@@ -1,12 +1,27 @@
 package it.epicode.biblioteca.prestiti;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "utenti")
 public class Utente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private String cognome;
+
+    @Column(nullable = false)
     private LocalDate dataDiNascita;
+
+    @Column(nullable = false)
     private String numeroTessera;
 
     public Utente(String nome, String cognome, LocalDate dataDiNascita, String numeroTessera) {

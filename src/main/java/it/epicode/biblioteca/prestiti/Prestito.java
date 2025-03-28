@@ -1,18 +1,35 @@
 package it.epicode.biblioteca.prestiti;
 
 import it.epicode.biblioteca.cataloghi.ElementoCatalogo;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "prestiti")
 public class Prestito {
-    private Utente utente;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @ManyToOne
+    @Column(nullable = false)
+    private String utente;
+
+    @ManyToOne
+    @Column(nullable = false)
     private ElementoCatalogo elementoPrestato;
+
+    @Column(nullable = false)
     private LocalDate dataInizioPrestito;
+
+    @Column(nullable = false)
     private LocalDate dataRestituzionePrevista;
     private LocalDate dataRestituzioneEffettiva;
 
     public Prestito(Utente utente, ElementoCatalogo elementoPrestato, LocalDate dataInizioPrestito, LocalDate dataRestituzionePrevista, LocalDate dataRestituzioneEffettiva) {
-        this.utente = utente;
+        this.utente = String.valueOf(utente);
         this.elementoPrestato = elementoPrestato;
         this.dataInizioPrestito = dataInizioPrestito;
         this.dataRestituzionePrevista = dataRestituzionePrevista;
@@ -26,12 +43,12 @@ public class Prestito {
         return dataRestituzioneEffettiva == null && LocalDate.now().isAfter(dataRestituzionePrevista);
     }
 
-    public Utente getUtente() {
+    public String getUtente() {
         return utente;
     }
 
     public void setUtente(Utente utente) {
-        this.utente = utente;
+        this.utente = String.valueOf(utente);
     }
 
     public ElementoCatalogo getElementoPrestato() {

@@ -8,10 +8,10 @@ import jakarta.persistence.Table;
 @Table(name = "libri")
 public class Libro extends ElementoCatalogo {
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 200)
     private String autore;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 200)
     private String genere;
 
     public Libro(String codiceIsbn, String titolo, int annoPubblicazione, int numeroPagine,  String autore, String genere) {

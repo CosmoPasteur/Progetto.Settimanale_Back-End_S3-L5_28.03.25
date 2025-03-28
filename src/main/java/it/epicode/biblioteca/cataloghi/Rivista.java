@@ -1,8 +1,14 @@
 package it.epicode.biblioteca.cataloghi;
 
 import it.epicode.biblioteca.enums.Periodicita;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "riviste")
 public class Rivista extends ElementoCatalogo {
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Periodicita periodicita;
 
     public Rivista(String codiceIsbn, String titolo, int annoPubblicazione, int numeroPagine, Periodicita periodicita) {

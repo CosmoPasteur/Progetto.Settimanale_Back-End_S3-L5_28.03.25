@@ -6,7 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "elementi_catalogo")
 public abstract class ElementoCatalogo {
     @Id
-    @Column(length = 13, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(length = 15, nullable = false)
     private String codiceIsbn;
 
     @Column(length = 100, nullable = false)
