@@ -5,6 +5,7 @@ package it.epicode.biblioteca.main;
 import it.epicode.biblioteca.cataloghi.Libro;
 import it.epicode.biblioteca.cataloghi.Rivista;
 import it.epicode.biblioteca.dao.BibliotecaDAO;
+import it.epicode.biblioteca.enums.Periodicita;
 import it.epicode.biblioteca.prestiti.Prestito;
 import it.epicode.biblioteca.prestiti.Utente;
 
@@ -25,18 +26,17 @@ public class Main {
 
         // Aggiungere una rivista
         Rivista rivista = new Rivista();
+        rivista.setCodiceIsbn("978-1-234-56789-0");
         rivista.setTitolo("Rivista Mensile");
-        rivista.setNumero(100);
-        rivista.setMese("Marzo");
-        rivista.setAnno(2025);
+        rivista.setAnnoPubblicazione(2025);
+        rivista.setNumeroPagine(100);
+        rivista.setPeriodicita(Periodicita.MENSILE); // Imposta la periodicità (ad esempio MENSILE)
         bibliotecaDAO.addRivista(rivista);
 
         // Aggiungere un utente
         Utente utente = new Utente();
-        utente.setNumeroTessera();
         utente.setNome("Giuseppe");
         utente.setCognome("Bianchi");
-        utente.setEmail("giuseppe.bianchi@example.com");
         utente.setNumeroTessera("TESSERA001");
         bibliotecaDAO.addUtente(utente);
 
@@ -44,7 +44,7 @@ public class Main {
         Prestito prestito = new Prestito();
         prestito.setIdUtente(utente);
         prestito.setIdLibro(libro);
-        prestito.setDataPrestito(LocalDate.now());
+        prestito.setDataInizioPrestito(LocalDate.now());
         prestito.setDataRestituzionePrevista(LocalDate.now().plusWeeks(2));
         bibliotecaDAO.addPrestito(prestito);
 

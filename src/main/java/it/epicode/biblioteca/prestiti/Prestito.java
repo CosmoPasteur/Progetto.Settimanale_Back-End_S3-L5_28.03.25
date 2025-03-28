@@ -21,6 +21,7 @@ public class Prestito {
     @Column(nullable = false)
     private ElementoCatalogo elementoPrestato;
 
+    @OneToMany
     @Column(nullable = false)
     private LocalDate dataInizioPrestito;
 
