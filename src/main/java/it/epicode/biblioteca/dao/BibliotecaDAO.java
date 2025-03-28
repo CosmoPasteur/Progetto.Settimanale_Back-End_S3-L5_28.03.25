@@ -18,7 +18,7 @@ public class BibliotecaDAO {
 
     public BibliotecaDAO() {
 
-        emf = Persistence.createEntityManagerFactory("bibliotecaPU");
+        emf = Persistence.createEntityManagerFactory("epicode");
         em = emf.createEntityManager();
     }
 
