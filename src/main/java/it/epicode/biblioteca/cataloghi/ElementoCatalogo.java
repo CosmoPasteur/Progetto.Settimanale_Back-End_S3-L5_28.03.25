@@ -29,11 +29,11 @@ public abstract class ElementoCatalogo {
     public ElementoCatalogo() {
     }
 
-    public String getcodiceIsbn() {
+    public String getCodiceIsbn() {
         return codiceIsbn;
     }
 
-    public void setcodiceIsbn(String codiceIsbn) {
+    public void setCodiceIsbn(String codiceIsbn) {
         this.codiceIsbn = codiceIsbn;
     }
 

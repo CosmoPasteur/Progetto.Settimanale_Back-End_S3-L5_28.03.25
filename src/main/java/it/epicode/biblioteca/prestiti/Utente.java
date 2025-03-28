@@ -59,8 +59,7 @@ public class Utente {
     }
 
     public String getNumeroTessera() {
-        return numeroTessera;
-    }
+        return numeroTessera;}
 
     public void setNumeroTessera(String numeroTessera) {
         this.numeroTessera = numeroTessera;
