@@ -15,13 +15,13 @@ public class Prestito {
 
     @ManyToOne
     @JoinColumn(name = "utente_id", nullable = false)
-    private String utente;
+    private Utente utente;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private ElementoCatalogo elementoPrestato;
 
-    @OneToMany
+    //@OneToMany
     @Column(nullable = false)
     private LocalDate dataInizioPrestito;
 
@@ -30,7 +30,7 @@ public class Prestito {
     private LocalDate dataRestituzioneEffettiva;
 
     public Prestito(Utente utente, ElementoCatalogo elementoPrestato, LocalDate dataInizioPrestito, LocalDate dataRestituzionePrevista, LocalDate dataRestituzioneEffettiva) {
-        this.utente = String.valueOf(utente);
+        this.utente = utente;
         this.elementoPrestato = elementoPrestato;
         this.dataInizioPrestito = dataInizioPrestito;
         this.dataRestituzionePrevista = dataRestituzionePrevista;
@@ -52,11 +52,11 @@ public class Prestito {
         this.id = id;
     }
 
-    public String getUtente() {
+    public Utente getUtente() {
         return utente;
     }
 
-    public void setUtente(String utente) {
+    public void setUtente(Utente utente) {
         this.utente = utente;
     }
 

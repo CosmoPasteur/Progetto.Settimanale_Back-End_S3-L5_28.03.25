@@ -42,7 +42,7 @@ public class Main {
 
         // Aggiungere un prestito
         Prestito prestito = new Prestito();
-        prestito.setUtente(utente.getCognome());
+        prestito.setUtente(Utente utente);
         prestito.setElementoPrestato(libro);
         prestito.setDataInizioPrestito(LocalDate.now());
         prestito.setDataRestituzionePrevista(LocalDate.now().plusWeeks(2));
