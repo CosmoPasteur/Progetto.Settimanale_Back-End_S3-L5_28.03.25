@@ -42,8 +42,8 @@ public class Main {
 
         // Aggiungere un prestito
         Prestito prestito = new Prestito();
-        prestito.setIdUtente(utente);
-        prestito.setIdLibro(libro);
+        prestito.setUtente(utente.getCognome());
+        prestito.setElementoPrestato(libro);
         prestito.setDataInizioPrestito(LocalDate.now());
         prestito.setDataRestituzionePrevista(LocalDate.now().plusWeeks(2));
         bibliotecaDAO.addPrestito(prestito);
@@ -70,11 +70,11 @@ public class Main {
 
         // Trova i prestiti attivi per una tessera
         System.out.println("Prestiti attivi per la tessera TESSERA001:");
-        bibliotecaDAO.findPrestitiAttiviByTessera("TESSERA001").forEach(p -> System.out.println(p.getIdLibro().getTitolo()));
+        bibliotecaDAO.findPrestitiAttiviByTessera("TESSERA001").forEach(p -> System.out.println(p.getElementoPrestato().getTitolo()));
 
         // Trova i prestiti scaduti
         System.out.println("Prestiti scaduti:");
-        bibliotecaDAO.findPrestitiScaduti().forEach(p -> System.out.println(p.getIdLibro().getTitolo()));
+        bibliotecaDAO.findPrestitiScaduti().forEach(p -> System.out.println(p.getElementoPrestato().getTitolo()));
 
         // Chiudere la connessione
         bibliotecaDAO.close();

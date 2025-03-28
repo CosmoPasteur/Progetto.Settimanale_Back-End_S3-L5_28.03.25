@@ -30,7 +30,7 @@ public class Prestito {
     private LocalDate dataRestituzioneEffettiva;
 
     public Prestito(Utente utente, ElementoCatalogo elementoPrestato, LocalDate dataInizioPrestito, LocalDate dataRestituzionePrevista, LocalDate dataRestituzioneEffettiva) {
-        this.utente = utente;
+        this.utente = String.valueOf(utente);
         this.elementoPrestato = elementoPrestato;
         this.dataInizioPrestito = dataInizioPrestito;
         this.dataRestituzionePrevista = dataRestituzionePrevista;
