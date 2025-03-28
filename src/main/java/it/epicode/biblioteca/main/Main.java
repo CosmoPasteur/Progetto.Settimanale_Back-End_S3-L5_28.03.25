@@ -23,6 +23,14 @@ public class Main {
         libro.setAnnoPubblicazione(2020);
         bibliotecaDAO.addLibro(libro);
 
+
+        Libro libro2 = new Libro();
+        libro2.setCodiceIsbn("978-3-16-148410-1");
+        libro2.setTitolo("Il Grande Libro 2");
+        libro2.setAutore("Mario Rossi");
+        libro2.setAnnoPubblicazione(2020);
+        bibliotecaDAO.addLibro(libro2);
+
         // Aggiungere una rivista
         Rivista rivista = new Rivista();
         rivista.setCodiceIsbn("978-1-234-56789-0");
