@@ -1,4 +1,4 @@
-package it.epicode.biblioteca.prestito;
+package it.epicode.biblioteca.prestiti;
 
 import java.time.LocalDate;
 

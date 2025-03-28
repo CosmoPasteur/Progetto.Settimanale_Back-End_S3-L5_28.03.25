@@ -1,6 +1,6 @@
-package it.epicode.biblioteca.prestito;
+package it.epicode.biblioteca.prestiti;
 
-import it.epicode.biblioteca.catalogo.ElementoCatalogo;
+import it.epicode.biblioteca.cataloghi.ElementoCatalogo;
 
 import java.time.LocalDate;
 

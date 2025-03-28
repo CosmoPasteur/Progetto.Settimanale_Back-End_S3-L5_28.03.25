@@ -1,4 +1,4 @@
-package it.epicode.biblioteca.catalogo;
+package it.epicode.biblioteca.cataloghi;
 
 public class Libro extends ElementoCatalogo {
     private String autore;

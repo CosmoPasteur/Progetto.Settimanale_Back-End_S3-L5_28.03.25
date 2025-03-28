@@ -1,8 +1,18 @@
-package it.epicode.biblioteca.catalogo;
+package it.epicode.biblioteca.cataloghi;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "elementi_catalogo")
 public abstract class ElementoCatalogo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String isbn;
+
+    @Column(length = 100, nullable = false)
     private String titolo;
+
+    @Column(nullable = false)
     private int annoPubblicazione;
     private int numeroPagine;
 
