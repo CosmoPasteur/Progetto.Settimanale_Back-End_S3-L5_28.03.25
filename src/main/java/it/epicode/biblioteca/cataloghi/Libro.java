@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "libri")
 public class Libro extends ElementoCatalogo {
 
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(nullable = false, length = 200)
     private String autore;
 
