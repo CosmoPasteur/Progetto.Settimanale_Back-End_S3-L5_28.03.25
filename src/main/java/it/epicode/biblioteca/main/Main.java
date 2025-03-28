@@ -1,7 +1,6 @@
 package it.epicode.biblioteca.main;
 
 
-
 import it.epicode.biblioteca.cataloghi.Libro;
 import it.epicode.biblioteca.cataloghi.Rivista;
 import it.epicode.biblioteca.dao.BibliotecaDAO;
