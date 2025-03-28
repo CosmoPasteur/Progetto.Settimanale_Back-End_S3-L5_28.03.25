@@ -6,18 +6,20 @@ import jakarta.persistence.*;
 @Table(name = "elementi_catalogo")
 public abstract class ElementoCatalogo {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String isbn;
+    @Column(length = 13, nullable = false)
+    private String codiceIsbn;
 
     @Column(length = 100, nullable = false)
     private String titolo;
 
     @Column(nullable = false)
     private int annoPubblicazione;
+
+    @Column(nullable = false)
     private int numeroPagine;
 
-    public ElementoCatalogo(String isbn, String titolo, int annoPubblicazione, int numeroPagine) {
-        this.isbn = isbn;
+    public ElementoCatalogo(String codicecodiceIsbn, String titolo, int annoPubblicazione, int numeroPagine) {
+        this.codiceIsbn = codiceIsbn;
         this.titolo = titolo;
         this.annoPubblicazione = annoPubblicazione;
         this.numeroPagine = numeroPagine;
@@ -26,12 +28,12 @@ public abstract class ElementoCatalogo {
     public ElementoCatalogo() {
     }
 
-    public String getIsbn() {
-        return isbn;
+    public String getcodiceIsbn() {
+        return codiceIsbn;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
+    public void setcodiceIsbn(String codiceIsbn) {
+        this.codiceIsbn = codiceIsbn;
     }
 
     public String getTitolo() {
@@ -61,7 +63,7 @@ public abstract class ElementoCatalogo {
     @Override
     public String toString() {
         return "ElementoCatalogo{" +
-                "isbn='" + isbn + '\'' +
+                "codiceIsbn='" + codiceIsbn + '\'' +
                 ", titolo='" + titolo + '\'' +
                 ", annoPubblicazione=" + annoPubblicazione +
                 ", numeroPagine=" + numeroPagine +

@@ -60,8 +60,4 @@ public class Utente {
                 ", numeroTessera='" + numeroTessera + '\'' +
                 '}';
     }
-
-    /*
-    * numeroTessera è String per utilizzo di codice alfa numerico
-    */
 }
