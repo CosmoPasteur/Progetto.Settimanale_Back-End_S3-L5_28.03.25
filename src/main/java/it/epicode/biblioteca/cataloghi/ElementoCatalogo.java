@@ -3,11 +3,14 @@ package it.epicode.biblioteca.cataloghi;
 import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "elementi_catalogo")
 public abstract class ElementoCatalogo {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(length = 15, nullable = false)
+    private Long id;
+
+    @Column(nullable = false)
     private String codiceIsbn;
 
     @Column(length = 100, nullable = false)
@@ -19,7 +22,7 @@ public abstract class ElementoCatalogo {
     @Column(nullable = false)
     private int numeroPagine;
 
-    public ElementoCatalogo(String codicecodiceIsbn, String titolo, int annoPubblicazione, int numeroPagine) {
+    public ElementoCatalogo(String codiceIsbn, String titolo, int annoPubblicazione, int numeroPagine) {
         this.codiceIsbn = codiceIsbn;
         this.titolo = titolo;
         this.annoPubblicazione = annoPubblicazione;

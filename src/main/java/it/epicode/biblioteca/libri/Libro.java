@@ -1,12 +1,16 @@
-package it.epicode.biblioteca.cataloghi;
+package it.epicode.biblioteca.libri;
 
+import it.epicode.biblioteca.cataloghi.ElementoCatalogo;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "libri")
 public class Libro extends ElementoCatalogo {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
     @Column(nullable = false, length = 200)
     private String autore;
 

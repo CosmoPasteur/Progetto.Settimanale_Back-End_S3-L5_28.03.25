@@ -1,79 +1,74 @@
-/*package it.epicode.biblioteca.archivi;
+package it.epicode.biblioteca.archivi;
 
 import it.epicode.biblioteca.cataloghi.ElementoCatalogo;
-import it.epicode.biblioteca.cataloghi.Libro;
-import it.epicode.biblioteca.prestiti.Prestito;
+import it.epicode.biblioteca.libri.Libro;
+import it.epicode.biblioteca.riviste.Rivista;
+import it.epicode.biblioteca.eccezioni.ElementoNonTrovatoException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Archivio {
-    private List<ElementoCatalogo> catalogo = new ArrayList<>();
-    private List<Prestito> prestiti = new ArrayList<>();
+    private List<ElementoCatalogo> elementi = new ArrayList<>();
 
-    // 🔹 Aggiungere un elemento al catalogo
-    public void aggiungiElemento(ElementoCatalogo e) {
-        catalogo.add(e);
+    public void aggiungiElemento(ElementoCatalogo elemento) {
+        if (elementi.stream().anyMatch(e -> e.getCodiceIsbn().equals(elemento.getCodiceIsbn()))) {
+            throw new IllegalArgumentException("Elemento con ISBN " + elemento.getCodiceIsbn() + " già presente.");
+        }
+        elementi.add(elemento);
     }
 
-    // 🔹 Rimuovere un elemento dato il codice ISBN
-    public void rimuoviElemento(String codiceISBN) {
-        catalogo.removeIf(e -> e.getCodiceIsbn().equals(codiceISBN));
+    public ElementoCatalogo cercaElemento(String isbn) throws ElementoNonTrovatoException {
+        return elementi.stream()
+                .filter(e -> e.getCodiceIsbn().equals(isbn))
+                .findFirst()
+                .orElseThrow(() -> new ElementoNonTrovatoException("Elemento con ISBN " + isbn + " non trovato."));
     }
 
-    // 🔹 Ricerca per codice ISBN
-    public Optional<ElementoCatalogo> ricercaPerISBN(String codiceISBN) {
-        return catalogo.stream()
-                .filter(e -> e.getCodiceIsbn().equals(codiceISBN))
-                .findFirst();
+    public void rimuoviElemento(String isbn) throws ElementoNonTrovatoException {
+        ElementoCatalogo elemento = cercaElemento(isbn);
+        elementi.remove(elemento);
     }
 
-    // 🔹 Ricerca per anno di pubblicazione
     public List<ElementoCatalogo> ricercaPerAnno(int anno) {
-        return catalogo.stream()
+        return elementi.stream()
                 .filter(e -> e.getAnnoPubblicazione() == anno)
                 .collect(Collectors.toList());
     }
 
-    // 🔹 Ricerca per autore (solo per i libri)
-    public List<ElementoCatalogo> ricercaPerAutore(String autore) {
-        return catalogo.stream()
-                .filter(e -> e instanceof Libro && ((Libro) e).getAutore().equalsIgnoreCase(autore))
+    public List<Libro> ricercaPerAutore(String autore) {
+        return elementi.stream()
+                .filter(e -> e instanceof Libro)
+                .map(e -> (Libro) e)
+                .filter(l -> l.getAutore().equalsIgnoreCase(autore))
                 .collect(Collectors.toList());
     }
 
-    // 🔹 Ricerca per titolo o parte di esso
-    public List<ElementoCatalogo> ricercaPerTitolo(String titolo) {
-        return catalogo.stream()
-                .filter(e -> e.getTitolo().toLowerCase().contains(titolo.toLowerCase()))
+    public List<Libro> ricercaPerGenere(String genere) {
+        return elementi.stream()
+                .filter(e -> e instanceof Libro)
+                .map(e -> (Libro) e)
+                .filter(l -> l.getGenere().equalsIgnoreCase(genere))
                 .collect(Collectors.toList());
     }
 
-    // 🔹 Aggiungere un prestito
-    public void aggiungiPrestito(Prestito prestito) {
-        prestiti.add(prestito);
+    public void aggiornaElemento(String isbn, ElementoCatalogo nuovoElemento) throws ElementoNonTrovatoException {
+        rimuoviElemento(isbn);
+        aggiungiElemento(nuovoElemento);
     }
 
-    // 🔹 Ricerca prestiti attivi per numero tessera
-    public List<Prestito> ricercaPrestitiUtente(String numeroTessera) {
-        return prestiti.stream()
-                .filter(p -> p.getUtente().getNumeroTessera().equals(numeroTessera) && p.getDataRestituzioneEffettiva() == null)
-                .collect(Collectors.toList());
+    public void stampaStatistiche() {
+        long numLibri = elementi.stream().filter(e -> e instanceof Libro).count();
+        long numRiviste = elementi.stream().filter(e -> e instanceof Rivista).count();
+        ElementoCatalogo maxPagine = elementi.stream().max(Comparator.comparingInt(ElementoCatalogo::getNumeroPagine)).orElse(null);
+        double mediaPagine = elementi.stream().mapToInt(ElementoCatalogo::getNumeroPagine).average().orElse(0);
+
+        System.out.println("Numero totale di libri: " + numLibri);
+        System.out.println("Numero totale di riviste: " + numRiviste);
+        System.out.println("Elemento con più pagine: " + (maxPagine != null ? maxPagine : "Nessun elemento"));
+        System.out.println("Media delle pagine: " + mediaPagine);
     }
 
-    // 🔹 Ricerca prestiti scaduti e non restituiti
-    public List<Prestito> ricercaPrestitiScaduti() {
-        return prestiti.stream()
-                .filter(Prestito::isScaduto)
-                .collect(Collectors.toList());
-    }
-
-    // 🔹 Registrare la restituzione di un elemento prestato
-    public void restituisciElemento(String codiceISBN) {
-        Optional<Prestito> prestito = prestiti.stream()
-                .filter(p -> p.getElementoPrestato().getCodiceIsbn().equals(codiceISBN) && p.getDataRestituzioneEffettiva() == null)
-                .findFirst();
-
-        prestito.ifPresent(p -> p.setDataRestituzioneEffettiva(java.time.LocalDate.now()));
-    }
-}*/
+}

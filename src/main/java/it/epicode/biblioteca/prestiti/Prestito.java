@@ -18,10 +18,9 @@ public class Prestito {
     private Utente utente;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "elemento_catalogo_id", nullable = false)
     private ElementoCatalogo elementoPrestato;
 
-    //@OneToMany
     @Column(nullable = false)
     private LocalDate dataInizioPrestito;
 
@@ -33,15 +32,11 @@ public class Prestito {
         this.utente = utente;
         this.elementoPrestato = elementoPrestato;
         this.dataInizioPrestito = dataInizioPrestito;
-        this.dataRestituzionePrevista = dataRestituzionePrevista;
-        this.dataRestituzioneEffettiva = null;
+        this.dataRestituzionePrevista = dataRestituzionePrevista.plusDays(30);
+        this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
     }
 
     public Prestito() {
-    }
-
-    public boolean isScaduto() {
-        return dataRestituzioneEffettiva == null && LocalDate.now().isAfter(dataRestituzionePrevista);
     }
 
     public Long getId() {

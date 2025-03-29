@@ -1,5 +1,6 @@
-package it.epicode.biblioteca.cataloghi;
+package it.epicode.biblioteca.riviste;
 
+import it.epicode.biblioteca.cataloghi.ElementoCatalogo;
 import it.epicode.biblioteca.enums.Periodicita;
 import jakarta.persistence.*;
 
