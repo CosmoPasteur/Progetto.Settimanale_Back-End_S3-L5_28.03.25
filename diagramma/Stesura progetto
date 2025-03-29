@@ -1,0 +1,94 @@
+Ho provato a fare un diagramma ma credo di non riuscire a caricarlo, quindi proverò a fare un'esposizione testuale del codice.
+Progetto: Sistema di gestione biblioteca
+Descrizione generale
+Il progetto consiste nello sviluppo di un sistema software per la gestione di una biblioteca.
+Il sistema consente di catalogare libri e riviste, registrare utenti e gestire i prestiti degli elementi presenti nell’archivio.
+L'interazione con l'utente avviene tramite un menu testuale, fornito dalla classe Helper,
+che permette di eseguire operazioni come l'aggiunta di nuovi elementi, la ricerca e la gestione dei prestiti.
+
+Struttura del progetto e classi principali:
+**ElementoCatalogo (Classe Padre)
+(Rappresenta un generico elemento del catalogo della biblioteca).
+
+Attributi:
+- Codice ISBN: Identificativo univoco dell’elemento.
+- Titolo (String)
+- Anno di pubblicazione (int)
+- Numero di pagine (int)
+
+Metodi:
+Getter e Setter per tutti gli attributi.
+
+**Libro (Classe Figlia di ElementoCatalogo)
+(Rappresenta un libro).
+
+Attributi:
+- Eredita di tutti gli attributi di ElementoCatalogo tramite extends ElementoCatalogo. E aggiunge:
+- Autore (String)
+- Genere (String)
+
+Metodi:
+Getter e Setter per tutti gli attributi.
+
+**Rivista (Classe Figlia di ElementoCatalogo)
+(Rappresenta una rivista).
+
+Attributi:
+- Eredita di tutti gli attributi di ElementoCatalogo tramite extends ElementoCatalogo. E aggiunge:
+- Periodicita [SETTIMANALE, MENSILE, SEMESTRALE]
+
+Metodi:
+Getter e Setter per tutti gli attributi.
+
+**Utente
+(Rappresenta un utente del sistema). Attributi:
+- Nome (String)
+- Cognome (String)
+- Data di nascita (LocalDate)
+- Numero Tessera (String)
+
+Metodi:
+Getter e Setter per tutti gli attributi.
+
+**Prestito
+(Rappresenta un prestito di un libro o rivista). Attributi:
+- Eredita di tutti gli attributi di ElementoCatalogo tramite extends ElementoCatalogo. E aggiunge:
+- id (Long)
+- Utente (Utente)
+- Data inizio prestito (LocalDate)
+- Data fine prestito (LocalDate)
+- Data restituzione prevista (LocalDate)
+- Data restituzione effettiva (LocalDate)
+- ElementoPrestato (ElementoCatalogo)
+
+Metodi:
+Getter e Setter per tutti gli attributi.
+
+**Helper
+(Rappresenta la classe che gestisce l'interazione con l'utente tramite un menu testuale). Attributi:
+- Utente attuale (Utente)
+- Biblioteca (Biblioteca)
+
+Metodi:
+- Menu principale
+- Aggiungi libro
+- Aggiungi rivista
+- Cerca elemento per ISBN
+- Gestisci prestiti
+- Mostra prestiti
+- Restituisci prestito
+- Aggiorna elemento esistente per ISBN
+- Rimuovi elemento per ISBN
+
+**Biblioteca
+(Rappresenta l'archivio della biblioteca).
+
+**Archivio
+(Rappresenta l'archivio della biblioteca). Attributi:
+- Elementi (List<ElementoCatalogo>)
+
+Metodi:
+- Aggiungi elemento
+- Rimuovi elemento per ISBN
+- Cerca elemento per ISBN
+- Mostra elementi
