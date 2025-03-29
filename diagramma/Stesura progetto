@@ -45,7 +45,8 @@ Getter e Setter per tutti gli attributi.
 - Nome (String)
 - Cognome (String)
 - Data di nascita (LocalDate)
-- Numero Tessera (String)
+- Numero Tessera (String) (univoco per ogni utente) (Avrei potuto mettere un Long, ma ho preferito usare una stringa perchè alcune biblioteche utilizzano codice alfa numerici.
+    sicuramente mi sono complicato la vita ma è parte di me ahah.. cio ho provato e a tratti mi sono anche divertito. Mi capita di trovarlo parecchio stimolante. )
 
 Metodi:
 Getter e Setter per tutti gli attributi.
@@ -64,8 +65,23 @@ Getter e Setter per tutti gli attributi.
 Metodi:
 Getter e Setter per tutti gli attributi.
 
+**Biblioteca
+(Rappresenta l'archivio della biblioteca).
+
+**Archivio
+(Rappresenta l'archivio della biblioteca. Gestisce la collezione di elementi (come libri e riviste)). Attributi:
+- Elementi (List<ElementoCatalogo>)
+
+Metodi:
+- Aggiungi elemento
+- Rimuovi elemento per ISBN
+- Cerca elemento per ISBN
+- Mostra elementi
+
 **Helper
-(Rappresenta la classe che gestisce l'interazione con l'utente tramite un menu testuale). Attributi:
+(Rappresenta la classe che gestisce l'interazione con l'utente tramite un menu testuale).
+Gestisce l'interazione con l'utente tramite un menu testuale. (Ho fatto del mio meglio)
+Attributi:
 - Utente attuale (Utente)
 - Biblioteca (Biblioteca)
 
@@ -80,15 +96,22 @@ Metodi:
 - Aggiorna elemento esistente per ISBN
 - Rimuovi elemento per ISBN
 
-**Biblioteca
-(Rappresenta l'archivio della biblioteca).
+---------------------------------------------------
 
-**Archivio
-(Rappresenta l'archivio della biblioteca). Attributi:
-- Elementi (List<ElementoCatalogo>)
+*********   Flusso di utilizzo del sistema  *********
 
-Metodi:
-- Aggiungi elemento
-- Rimuovi elemento per ISBN
-- Cerca elemento per ISBN
-- Mostra elementi
+1. L'utente avvia il programma e accede al menu principale.
+
+2. Può scegliere di aggiungere un libro o una rivista al catalogo.
+
+3. Può cercare un elemento per ISBN, anno di pubblicazione, autore o genere.
+
+4. Può rimuovere un elemento dal catalogo.
+
+5. Può registrare un nuovo utente.
+
+6. Può gestire i prestiti, verificando quelli attivi e quelli scaduti.
+
+7. Può restituire un elemento preso in prestito.
+
+8. Il sistema salva e aggiorna le informazioni nella base di dati.
